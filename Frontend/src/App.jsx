@@ -18,7 +18,7 @@ function App() {
         <div className="container">
           <a href="#" className="nav-brand">
             <div className="nav-logo">PH</div>
-            <span className="nav-name">Puteet Hill HOA</span>
+            <span className="nav-name">Putteet Hill HOA</span>
           </a>
           <div className="nav-links">
             <a href="#about">About</a>
@@ -32,7 +32,7 @@ function App() {
       {/* ── Hero Section ── */}
       <section className="hero" id="hero">
         <div className="hero-bg">
-          <img src={heroBg} alt="Puteet Hill community aerial view" />
+          <img src={heroBg} alt="Putteet Hill community aerial view" />
           <div className="hero-overlay" />
         </div>
         <div className="container hero-content">
@@ -41,12 +41,12 @@ function App() {
             Welcome to Our Community
           </div>
           <h1>
-            Life at <span>Puteet Hill</span>
+            Life at <span>Putteet Hill</span>
           </h1>
           <p className="hero-description">
             A vibrant neighborhood built on community, connection, and care.
             Stay informed, get involved, and make the most of everything
-            Puteet Hill has to offer.
+            Putteet Hill has to offer.
           </p>
           <div className="hero-actions">
             <a href="#announcements" className="btn btn-primary">
@@ -126,11 +126,11 @@ function App() {
       <section className="about" id="about">
         <div className="container">
           <span className="section-label">Our Community</span>
-          <h2 className="section-title">Welcome to Puteet Hill</h2>
+          <h2 className="section-title">Welcome to Putteet Hill</h2>
           <div className="about-grid">
             <div className="about-text">
               <p>
-                Puteet Hill is more than just a neighborhood — it's a thriving
+                Putteet Hill is more than just a neighborhood — it's a thriving
                 community where families grow, friendships flourish, and
                 neighbors look out for one another. Nestled in a beautiful
                 setting, our community offers the perfect blend of suburban
@@ -233,11 +233,11 @@ function App() {
               <div className="nav-brand">
                 <div className="nav-logo">PH</div>
                 <span className="nav-name" style={{ color: '#fff' }}>
-                  Puteet Hill HOA
+                  Putteet Hill HOA
                 </span>
               </div>
               <p>
-                Building a better community together. Your Puteet Hill
+                Building a better community together. Your Putteet Hill
                 Homeowners Association, serving residents with transparency
                 and dedication.
               </p>
@@ -264,7 +264,7 @@ function App() {
             </div>
           </div>
           <div className="footer-bottom">
-            <span>© 2026 Puteet Hill HOA. All rights reserved.</span>
+            <span>© 2026 Putteet Hill HOA. All rights reserved.</span>
             <span>Privacy Policy · Terms of Service</span>
           </div>
         </div>
