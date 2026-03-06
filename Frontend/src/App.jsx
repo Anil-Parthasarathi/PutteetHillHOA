@@ -17,8 +17,7 @@ function App() {
       <nav className={`navbar ${scrolled ? 'scrolled' : ''}`} id="navbar">
         <div className="container">
           <a href="#" className="nav-brand">
-            <div className="nav-logo">PH</div>
-            <span className="nav-name">Putteet Hill HOA</span>
+            <img src="/Putteet-Hill-LOGO_white.webp" alt="Putteet Hill HOA" className="nav-logo-img" />
           </a>
           <div className="nav-links">
             <a href="#about">About</a>
@@ -231,10 +230,7 @@ function App() {
           <div className="footer-grid">
             <div className="footer-brand">
               <div className="nav-brand">
-                <div className="nav-logo">PH</div>
-                <span className="nav-name" style={{ color: '#fff' }}>
-                  Putteet Hill HOA
-                </span>
+                <img src="/Putteet-Hill-LOGO_white.webp" alt="Putteet Hill HOA" className="nav-logo-img" />
               </div>
               <p>
                 Building a better community together. Your Putteet Hill
