@@ -617,6 +617,21 @@
   max-width: 560px;
 }
 
+.documents-container {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xl);
+}
+
+.document-category-header {
+  font-size: 1.5rem;
+  color: var(--color-primary-dark);
+  margin-bottom: var(--space-md);
+  padding-bottom: 0.5rem;
+  border-bottom: 2px solid var(--color-border);
+  font-weight: 700;
+}
+
 .documents-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));

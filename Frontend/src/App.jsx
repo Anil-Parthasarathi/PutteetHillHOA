@@ -8,8 +8,8 @@ function App() {
   const [weather, setWeather] = useState(null)
 
   useEffect(() => {
-    // Fetch Weather Data
-    fetch('http://localhost:3000/api/weather')
+    // Fetch Weather Data from Vercel Serverless Function
+    fetch('/api/weather')
       .then((res) => res.json())
       .then((data) => setWeather(data))
       .catch((err) => console.error('Error fetching weather:', err));
@@ -19,16 +19,19 @@ function App() {
     window.addEventListener('scroll', handleScroll)
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
-  // Automatically import all PDFs in the public/documents folder
-  const documentFiles = import.meta.glob('/public/documents/*.pdf', { query: '?url', import: 'default', eager: true });
+  // Automatically import all files in the public/documents folder
+  const documentFiles = import.meta.glob('/public/documents/*.*', { query: '?url', import: 'default', eager: true });
   
-  // Convert the Vite glob object into our needed array format
-  const hoaDocuments = Object.keys(documentFiles).map(path => {
-    // Extract filename (e.g., "Bylaws.pdf")
+  // Convert the Vite glob object into a flat array first
+  const allDocuments = Object.keys(documentFiles).map(path => {
+    // Extract filename (e.g., "Bylaws.pdf" or "Form.docx")
     const file = path.split('/').pop();
     
     // Generate a readable title by removing the extension and replacing dashes with spaces
-    let title = file.replace('.pdf', '').replace(/-/g, ' ');
+    const extensionIndex = file.lastIndexOf('.');
+    let title = extensionIndex !== -1 ? file.substring(0, extensionIndex) : file;
+    title = title.replace(/-/g, ' ');
+    
     // Custom mapping for specific files per user request
     if (file === 'Welcome-Home.pdf') {
       title = 'United Cooperative Services (Electric & High speed Internet)';
@@ -37,22 +40,36 @@ function App() {
     // Basic category assignment logic based on keywords in the filename
     let category = 'General';
     const lowerTitle = title.toLowerCase();
-    if (lowerTitle.includes('bylaws') || lowerTitle.includes('ccr') || lowerTitle.includes('rules') || lowerTitle.includes('covenants')) category = 'Governance';
-    else if (lowerTitle.includes('deed') || lowerTitle.includes('plat')) category = 'Legal';
-    else if (lowerTitle.includes('application') || lowerTitle.includes('plan')) category = 'Applications';
-    else if (lowerTitle.includes('minutes')) category = 'Minutes';
+    if (lowerTitle.includes('bylaws') || lowerTitle.includes('ccr') || lowerTitle.includes('rules') || lowerTitle.includes('covenants') || lowerTitle.includes('amend')) category = 'Governance';
+    else if (lowerTitle.includes('deed') || lowerTitle.includes('plat') || lowerTitle.includes('certificate') || lowerTitle.includes('resale')) category = 'Legal';
+    else if (lowerTitle.includes('application') || lowerTitle.includes('plan') || lowerTitle.includes('form') || lowerTitle.includes('registration')) category = 'Applications';
+    else if (lowerTitle.includes('minute')) category = 'Minutes';
 
     return { file, title, category };
   });
 
-  // Sort documents alphabetically by title, or keep Governance at the top
-  hoaDocuments.sort((a, b) => {
-    const categoryOrder = { 'Governance': 1, 'Legal': 2, 'Applications': 3, 'Minutes': 4, 'General': 5 };
-    if (categoryOrder[a.category] !== categoryOrder[b.category]) {
-      return categoryOrder[a.category] - categoryOrder[b.category];
+  // Sort flat array alphabetically by title
+  allDocuments.sort((a, b) => a.title.localeCompare(b.title));
+
+  // Group documents by category for the new UI
+  const groupedDocuments = {
+    'Governance': [],
+    'Legal': [],
+    'Applications': [],
+    'Minutes': [],
+    'General': []
+  };
+
+  allDocuments.forEach(doc => {
+    if (groupedDocuments[doc.category]) {
+      groupedDocuments[doc.category].push(doc);
+    } else {
+      groupedDocuments['General'].push(doc);
     }
-    return a.title.localeCompare(b.title);
   });
+
+  // Remove empty categories
+  const activeCategories = Object.keys(groupedDocuments).filter(cat => groupedDocuments[cat].length > 0);
 
   return (
     <div className="app">
@@ -232,23 +249,32 @@ function App() {
           <span className="section-label">Resources</span>
           <h2 className="section-title">HOA Documents</h2>
           <p className="documents-subtitle">Access important community documents below. Click any document to view or download.</p>
-          <div className="documents-grid">
-            {hoaDocuments.map((doc, i) => (
-              <a
-                href={`/documents/${doc.file}`}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="document-card"
-                key={i}
-                id={`document-${i}`}
-              >
-                <div className="document-icon">📄</div>
-                <div className="document-info">
-                  <h3>{doc.title}</h3>
-                  <span className={`document-category cat-${doc.category.toLowerCase()}`}>{doc.category}</span>
+          <div className="documents-container">
+            {activeCategories.map(category => (
+              <div key={category} className="document-category-group">
+                <h3 className="document-category-header">{category}</h3>
+                <div className="documents-grid">
+                  {groupedDocuments[category].map((doc, i) => (
+                    <a
+                      href={`/documents/${doc.file}`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="document-card"
+                      key={i}
+                      id={`document-${doc.category}-${i}`}
+                    >
+                      <div className="document-icon">
+                        {doc.file.endsWith('.pdf') ? '📄' : doc.file.endsWith('.docx') || doc.file.endsWith('.doc') ? '📝' : '📁'}
+                      </div>
+                      <div className="document-info">
+                        <h3>{doc.title}</h3>
+                        <span className={`document-category cat-${doc.category.toLowerCase()}`}>{doc.category}</span>
+                      </div>
+                      <span className="document-action">View →</span>
+                    </a>
+                  ))}
                 </div>
-                <span className="document-action">View →</span>
-              </a>
+              </div>
             ))}
           </div>
         </div>
@@ -310,7 +336,7 @@ function App() {
               {
                 date: 'Just Now',
                 title: 'New Document Posted',
-                desc: `A new document "${hoaDocuments[0].title}" has been added to the HOA Documents section under ${hoaDocuments[0].category}.`,
+                desc: allDocuments.length > 0 ? `A new document "${allDocuments[0].title}" has been added to the HOA Documents section under ${allDocuments[0].category}.` : 'New documents have been uploaded to the portal.',
                 tag: 'Update',
                 tagClass: 'tag-update',
                 link: `#documents`
