@@ -6,12 +6,14 @@ import Board from './pages/Board'
 import Documents from './pages/Documents'
 import Other from './pages/Other'
 import Calendar from './pages/Calendar'
+import SparkleBackground from './components/SparkleBackground'
 import './App.css'
 
 function App() {
   return (
     <Router>
       <div className="app">
+        <SparkleBackground />
         <Navbar />
         <main className="main-content">
           <Routes>

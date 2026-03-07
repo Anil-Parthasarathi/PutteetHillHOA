@@ -4,6 +4,8 @@ export function getDocuments() {
 
     // Convert the Vite glob object into a flat array first
     const allDocuments = Object.keys(documentFiles).map(path => {
+        const url = documentFiles[path];
+
         // Extract filename (e.g., "Bylaws.pdf" or "Form.docx")
         const file = path.split('/').pop();
 
@@ -25,7 +27,7 @@ export function getDocuments() {
         else if (lowerTitle.includes('application') || lowerTitle.includes('plan') || lowerTitle.includes('form') || lowerTitle.includes('registration')) category = 'Applications';
         else if (lowerTitle.includes('minute')) category = 'Minutes';
 
-        return { file, title, category };
+        return { file, title, category, url };
     });
 
     // Sort flat array alphabetically by title

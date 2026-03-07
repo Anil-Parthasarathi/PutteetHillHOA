@@ -19,7 +19,7 @@ export default function Documents() {
                                 <div className="documents-grid">
                                     {groupedDocuments[category].map((doc, i) => (
                                         <a
-                                            href={`/documents/${doc.file}`}
+                                            href={doc.url}
                                             target="_blank"
                                             rel="noopener noreferrer"
                                             className="document-card"
