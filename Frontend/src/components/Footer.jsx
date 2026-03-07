@@ -27,7 +27,7 @@ export default function Footer() {
                         <h4>Resources</h4>
                         <Link to="/">Pay Dues</Link>
                         <Link to="/">Submit Request</Link>
-                        <Link to="/">Calendar</Link>
+                        <Link to="/calendar">Calendar</Link>
                     </div>
                     <div className="footer-col">
                         <h4>Contact</h4>

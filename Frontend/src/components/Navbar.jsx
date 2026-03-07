@@ -44,6 +44,8 @@ export default function Navbar() {
                     <Link to="/">Home</Link>
                     <Link to="/board">Board</Link>
                     <Link to="/documents">Documents</Link>
+                    <Link to="/calendar">Calendar</Link>
+                    <Link to="/other">Other</Link>
                 </div>
             </div>
         </nav>

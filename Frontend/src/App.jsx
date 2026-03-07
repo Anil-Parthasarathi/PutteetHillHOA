@@ -4,6 +4,8 @@ import Footer from './components/Footer'
 import Home from './pages/Home'
 import Board from './pages/Board'
 import Documents from './pages/Documents'
+import Other from './pages/Other'
+import Calendar from './pages/Calendar'
 import './App.css'
 
 function App() {
@@ -16,6 +18,8 @@ function App() {
             <Route path="/" element={<Home />} />
             <Route path="/board" element={<Board />} />
             <Route path="/documents" element={<Documents />} />
+            <Route path="/other" element={<Other />} />
+            <Route path="/calendar" element={<Calendar />} />
           </Routes>
         </main>
         <Footer />

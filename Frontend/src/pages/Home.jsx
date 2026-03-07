@@ -51,62 +51,6 @@ export default function Home() {
                 </div>
             </section>
 
-            {/* ── Quick Links ── */}
-            <section className="quick-links" id="quick-links">
-                <div className="container">
-                    <div className="quick-links-grid">
-                        {[
-                            {
-                                icon: '📋',
-                                iconClass: 'green',
-                                title: 'HOA Documents',
-                                desc: 'Bylaws, CC&Rs, meeting minutes, and community guidelines.',
-                                link: 'View Documents',
-                                to: '/documents',
-                            },
-                            {
-                                icon: '💳',
-                                iconClass: 'gold',
-                                title: 'Pay Dues',
-                                desc: 'Conveniently pay your HOA dues and view payment history.',
-                                link: 'Make Payment',
-                                to: '/'
-                            },
-                            {
-                                icon: '🔧',
-                                iconClass: 'blue',
-                                title: 'Submit a Request',
-                                desc: 'Report maintenance issues or submit architectural requests.',
-                                link: 'Submit Request',
-                                to: '/'
-                            },
-                            {
-                                icon: '📅',
-                                iconClass: 'rose',
-                                title: 'Events Calendar',
-                                desc: 'Upcoming community events, meetings, and social gatherings.',
-                                link: 'View Calendar',
-                                to: '/'
-                            },
-                        ].map((item, i) => {
-                            const Card = (
-                                <div className="quick-link-card" key={i} id={`quick-link-${i}`}>
-                                    <div className={`quick-link-icon ${item.iconClass}`}>
-                                        {item.icon}
-                                    </div>
-                                    <h3>{item.title}</h3>
-                                    <p>{item.desc}</p>
-                                    <span className="quick-link-arrow">
-                                        {item.link} →
-                                    </span>
-                                </div>
-                            )
-                            return item.to ? <Link to={item.to} key={i} style={{ textDecoration: 'none', color: 'inherit' }}>{Card}</Link> : Card
-                        })}
-                    </div>
-                </div>
-            </section>
-
             {/* ── About Section ── */}
             <section className="about" id="about">
                 <div className="container">
@@ -149,6 +93,62 @@ export default function Home() {
                                 referrerPolicy="no-referrer-when-downgrade"
                             ></iframe>
                         </div>
+                    </div>
+                </div>
+            </section>
+
+            {/* ── Quick Links ── */}
+            <section className="quick-links" id="quick-links">
+                <div className="container">
+                    <div className="quick-links-grid">
+                        {[
+                            {
+                                icon: '📋',
+                                iconClass: 'green',
+                                title: 'HOA Documents',
+                                desc: 'Bylaws, CC&Rs, meeting minutes, and community guidelines.',
+                                link: 'View Documents',
+                                to: '/documents',
+                            },
+                            {
+                                icon: '💳',
+                                iconClass: 'gold',
+                                title: 'Pay Dues',
+                                desc: 'Conveniently pay your HOA dues and view payment history.',
+                                link: 'Make Payment',
+                                to: '/'
+                            },
+                            {
+                                icon: '🔧',
+                                iconClass: 'blue',
+                                title: 'Submit a Request',
+                                desc: 'Report maintenance issues or submit architectural requests.',
+                                link: 'Submit Request',
+                                to: '/'
+                            },
+                            {
+                                icon: '📅',
+                                iconClass: 'rose',
+                                title: 'Events Calendar',
+                                desc: 'Upcoming community events, meetings, and social gatherings.',
+                                link: 'View Calendar',
+                                to: '/calendar'
+                            },
+                        ].map((item, i) => {
+                            const Card = (
+                                <div className="quick-link-card" key={i} id={`quick-link-${i}`}>
+                                    <div className={`quick-link-icon ${item.iconClass}`}>
+                                        {item.icon}
+                                    </div>
+                                    <h3>{item.title}</h3>
+                                    <p>{item.desc}</p>
+                                    <span className="quick-link-arrow">
+                                        {item.link} →
+                                    </span>
+                                </div>
+                            )
+                            return item.to ? <Link to={item.to} key={i} style={{ textDecoration: 'none', color: 'inherit' }}>{Card}</Link> : Card
+                        })}
                     </div>
                 </div>
             </section>
