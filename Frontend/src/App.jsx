@@ -4,26 +4,75 @@ import './App.css'
 
 function App() {
   const [scrolled, setScrolled] = useState(false)
+  const [weather, setWeather] = useState(null)
 
   useEffect(() => {
+    // Fetch Weather Data
+    fetch('http://localhost:3000/api/weather')
+      .then((res) => res.json())
+      .then((data) => setWeather(data))
+      .catch((err) => console.error('Error fetching weather:', err));
+      
+    // Handle Scroll
     const handleScroll = () => setScrolled(window.scrollY > 50)
     window.addEventListener('scroll', handleScroll)
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
+  // Automatically import all PDFs in the public/documents folder
+  const documentFiles = import.meta.glob('/public/documents/*.pdf', { query: '?url', import: 'default', eager: true });
+  
+  // Convert the Vite glob object into our needed array format
+  const hoaDocuments = Object.keys(documentFiles).map(path => {
+    // Extract filename (e.g., "Bylaws.pdf")
+    const file = path.split('/').pop();
+    
+    // Generate a readable title by removing the extension and replacing dashes with spaces
+    let title = file.replace('.pdf', '').replace(/-/g, ' ');
+    // Custom mapping for specific files per user request
+    if (file === 'Welcome-Home.pdf') {
+      title = 'United Cooperative Services (Electric & High speed Internet)';
+    }
+    
+    // Basic category assignment logic based on keywords in the filename
+    let category = 'General';
+    const lowerTitle = title.toLowerCase();
+    if (lowerTitle.includes('bylaws') || lowerTitle.includes('ccr') || lowerTitle.includes('rules') || lowerTitle.includes('covenants')) category = 'Governance';
+    else if (lowerTitle.includes('deed') || lowerTitle.includes('plat')) category = 'Legal';
+    else if (lowerTitle.includes('application') || lowerTitle.includes('plan')) category = 'Applications';
+    else if (lowerTitle.includes('minutes')) category = 'Minutes';
+
+    return { file, title, category };
+  });
+
+  // Sort documents alphabetically by title, or keep Governance at the top
+  hoaDocuments.sort((a, b) => {
+    const categoryOrder = { 'Governance': 1, 'Legal': 2, 'Applications': 3, 'Minutes': 4, 'General': 5 };
+    if (categoryOrder[a.category] !== categoryOrder[b.category]) {
+      return categoryOrder[a.category] - categoryOrder[b.category];
+    }
+    return a.title.localeCompare(b.title);
+  });
 
   return (
     <div className="app">
       {/* ── Navigation ── */}
       <nav className={`navbar ${scrolled ? 'scrolled' : ''}`} id="navbar">
         <div className="container">
-          <a href="#" className="nav-brand">
-            <img src="/Putteet-Hill-LOGO_white.webp" alt="Putteet Hill HOA" className="nav-logo-img" />
-          </a>
+          <div className="nav-brand-group">
+            <a href="#" className="nav-brand">
+              <img src="/Putteet-Hill-LOGO_white.webp" alt="Putteet Hill HOA" className="nav-logo-img" />
+            </a>
+            {weather && (
+              <div className="nav-weather">
+                <span className="weather-temp">{weather.temperature}°{weather.temperatureUnit}</span>
+                <img src={weather.icon} alt={weather.shortForecast} className="weather-icon" />
+              </div>
+            )}
+          </div>
           <div className="nav-links">
             <a href="#about">About</a>
             <a href="#announcements">News</a>
             <a href="#contact">Contact</a>
-            <a href="#" className="nav-cta">Resident Portal</a>
           </div>
         </div>
       </nav>
@@ -57,11 +106,11 @@ function App() {
           </div>
           <div className="hero-stats">
             <div className="hero-stat">
-              <h3>250+</h3>
+              <h3>97</h3>
               <p>Homes</p>
             </div>
             <div className="hero-stat">
-              <h3>15+</h3>
+              <h3>{new Date().getFullYear() - 2023}+</h3>
               <p>Years Est.</p>
             </div>
             <div className="hero-stat">
@@ -83,6 +132,7 @@ function App() {
                 title: 'HOA Documents',
                 desc: 'Bylaws, CC&Rs, meeting minutes, and community guidelines.',
                 link: 'View Documents',
+                href: '#documents',
               },
               {
                 icon: '💳',
@@ -105,18 +155,21 @@ function App() {
                 desc: 'Upcoming community events, meetings, and social gatherings.',
                 link: 'View Calendar',
               },
-            ].map((item, i) => (
-              <div className="quick-link-card" key={i} id={`quick-link-${i}`}>
-                <div className={`quick-link-icon ${item.iconClass}`}>
-                  {item.icon}
+            ].map((item, i) => {
+              const Card = (
+                <div className="quick-link-card" key={i} id={`quick-link-${i}`}>
+                  <div className={`quick-link-icon ${item.iconClass}`}>
+                    {item.icon}
+                  </div>
+                  <h3>{item.title}</h3>
+                  <p>{item.desc}</p>
+                  <span className="quick-link-arrow">
+                    {item.link} →
+                  </span>
                 </div>
-                <h3>{item.title}</h3>
-                <p>{item.desc}</p>
-                <span className="quick-link-arrow">
-                  {item.link} →
-                </span>
-              </div>
-            ))}
+              )
+              return item.href ? <a href={item.href} key={i} style={{ textDecoration: 'none', color: 'inherit' }}>{Card}</a> : Card
+            })}
           </div>
         </div>
       </section>
@@ -172,6 +225,70 @@ function App() {
         </div>
       </section>
 
+      {/* ── Documents Section ── */}
+      <section className="documents" id="documents">
+        <div className="container">
+          <span className="section-label">Resources</span>
+          <h2 className="section-title">HOA Documents</h2>
+          <p className="documents-subtitle">Access important community documents below. Click any document to view or download.</p>
+          <div className="documents-grid">
+            {hoaDocuments.map((doc, i) => (
+              <a
+                href={`/documents/${doc.file}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="document-card"
+                key={i}
+                id={`document-${i}`}
+              >
+                <div className="document-icon">📄</div>
+                <div className="document-info">
+                  <h3>{doc.title}</h3>
+                  <span className={`document-category cat-${doc.category.toLowerCase()}`}>{doc.category}</span>
+                </div>
+                <span className="document-action">View →</span>
+              </a>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ── Current Builders ── */}
+      <section className="builders" id="builders">
+        <div className="container">
+          <span className="section-label">Build With Us</span>
+          <h2 className="section-title">Current Putteet Hill Builders</h2>
+          <p className="builders-subtitle">Or bring your own!</p>
+          <div className="builders-grid">
+            {[
+              { name: 'Ann Whitecotton Homes', url: 'https://www.annwhitecottonhomes.com/' },
+              { name: 'Couto Homes', url: 'https://coutohomes.com/' },
+              { name: 'Will Steed Homes', url: 'https://willsteedhomes.com/' },
+              { name: 'Fortress Homes TX', url: 'https://fortresshomestx.com/' },
+              { name: 'Calvillo Custom Homes', url: 'https://www.calvillocustomhomes.com/' },
+              { name: 'Hopper Custom Homes', url: 'https://hoppercustomhomes.com/' },
+              { name: 'John Askew Homes', url: 'https://www.johnaskewhomes.com/' },
+              { name: 'Blake Freeman Construction', url: 'https://blakefreemanconstruction.com/' },
+            ].map((builder, i) => (
+              <a
+                href={builder.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="builder-card"
+                key={i}
+                id={`builder-${i}`}
+              >
+                <div className="builder-icon">🏗️</div>
+                <div className="builder-info">
+                  <h3>{builder.name}</h3>
+                  <span className="builder-link">Visit Site →</span>
+                </div>
+              </a>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* ── Announcements ── */}
       <section className="announcements" id="announcements">
         <div className="container">
@@ -190,25 +307,28 @@ function App() {
           <div className="announcements-grid">
             {[
               {
-                date: 'Mar 15, 2026',
-                title: 'Spring Community Cleanup Day',
-                desc: 'Join your neighbors for our annual spring cleanup! Meet at the community pavilion at 9 AM. Supplies and refreshments provided.',
-                tag: 'Event',
-                tagClass: 'tag-event',
-              },
-              {
-                date: 'Mar 10, 2026',
-                title: 'Board Meeting Minutes Available',
-                desc: 'Minutes from the March board meeting are now available for review in the resident portal. Key topics include landscaping updates and budget review.',
+                date: 'Just Now',
+                title: 'New Document Posted',
+                desc: `A new document "${hoaDocuments[0].title}" has been added to the HOA Documents section under ${hoaDocuments[0].category}.`,
                 tag: 'Update',
                 tagClass: 'tag-update',
+                link: `#documents`
               },
               {
-                date: 'Mar 1, 2026',
-                title: 'Pool Season Preparation Notice',
-                desc: 'The community pool will undergo maintenance starting March 20th. Expected opening for the season is May 1st. Pool key renewals are now open.',
-                tag: 'Notice',
-                tagClass: 'tag-notice',
+                date: '2 days ago',
+                title: 'Annual HOA Meeting Reminder',
+                desc: 'Our annual HOA meeting is scheduled for next Saturday at 10 AM in the community clubhouse. Please plan to attend.',
+                tag: 'Event',
+                tagClass: 'tag-event',
+                link: '#'
+              },
+              {
+                date: '1 week ago',
+                title: 'Pool Season Opening Soon!',
+                desc: 'Get ready for summer! The community pool will officially open on May 1st. Remember to pick up your new pool passes.',
+                tag: 'Community',
+                tagClass: 'tag-community',
+                link: '#'
               },
             ].map((item, i) => (
               <div className="announcement-card" key={i} id={`announcement-${i}`}>
@@ -242,12 +362,11 @@ function App() {
               <h4>Quick Links</h4>
               <a href="#about">About Us</a>
               <a href="#announcements">News</a>
-              <a href="#">Documents</a>
+              <a href="#documents">HOA Documents</a>
               <a href="#">FAQs</a>
             </div>
             <div className="footer-col">
               <h4>Resources</h4>
-              <a href="#">Resident Portal</a>
               <a href="#">Pay Dues</a>
               <a href="#">Submit Request</a>
               <a href="#">Calendar</a>
@@ -257,6 +376,11 @@ function App() {
               <a href="#">board@puteethillhoa.com</a>
               <a href="#">(555) 123-4567</a>
               <a href="#">Office Hours: M–F, 9–5</a>
+              <p className="footer-address">
+                Putteet Hill Homeowners Association, Inc.<br />
+                3100 Rio Grande Cir<br />
+                Cresson, TX 76035
+              </p>
             </div>
           </div>
           <div className="footer-bottom">
