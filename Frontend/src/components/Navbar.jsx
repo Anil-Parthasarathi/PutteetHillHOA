@@ -5,11 +5,17 @@ import logoImg from '../../public/Putteet-Hill-LOGO_white.webp'
 export default function Navbar() {
     const [scrolled, setScrolled] = useState(false)
     const [weather, setWeather] = useState(null)
+    const [menuOpen, setMenuOpen] = useState(false)
     const location = useLocation()
 
     // If not on home page, we can force the navbar to always appear as scrolled or solid
     // so the white logo and links don't blend with a white background.
     const isHome = location.pathname === '/'
+
+    useEffect(() => {
+        // Close menu on route change
+        setMenuOpen(false)
+    }, [location])
 
     useEffect(() => {
         // Fetch Weather Data from Vercel Serverless Function
@@ -40,7 +46,19 @@ export default function Navbar() {
                         </div>
                     )}
                 </div>
-                <div className="nav-links">
+
+                {/* Mobile Menu Toggle */}
+                <button
+                    className={`mobile-menu-btn ${menuOpen ? 'open' : ''}`}
+                    onClick={() => setMenuOpen(!menuOpen)}
+                    aria-label="Toggle navigation menu"
+                >
+                    <span className="hamburger-line"></span>
+                    <span className="hamburger-line"></span>
+                    <span className="hamburger-line"></span>
+                </button>
+
+                <div className={`nav-links ${menuOpen ? 'active' : ''}`}>
                     <Link to="/">Home</Link>
                     <Link to="/board">Board</Link>
                     <Link to="/documents">Documents</Link>
