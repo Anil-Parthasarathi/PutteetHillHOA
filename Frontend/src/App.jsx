@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react'
 import heroBg from './assets/hero-bg.png'
+import logoImg from '../public/Putteet-Hill-LOGO_white.webp'
 import './App.css'
 
 function App() {
@@ -60,7 +61,7 @@ function App() {
         <div className="container">
           <div className="nav-brand-group">
             <a href="#" className="nav-brand">
-              <img src="/Putteet-Hill-LOGO_white.webp" alt="Putteet Hill HOA" className="nav-logo-img" />
+              <img src={logoImg} alt="Putteet Hill HOA" className="nav-logo-img" />
             </a>
             {weather && (
               <div className="nav-weather">
@@ -350,7 +351,7 @@ function App() {
           <div className="footer-grid">
             <div className="footer-brand">
               <div className="nav-brand">
-                <img src="/Putteet-Hill-LOGO_white.webp" alt="Putteet Hill HOA" className="nav-logo-img" />
+                <img src={logoImg} alt="Putteet Hill HOA" className="nav-logo-img" />
               </div>
               <p>
                 Building a better community together. Your Putteet Hill
