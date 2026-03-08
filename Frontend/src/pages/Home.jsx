@@ -1,7 +1,6 @@
 import { Link } from 'react-router-dom'
 import heroBg from '../assets/hero-bg.png'
 import { getDocuments } from '../utils/documents'
-import FractalBackground from '../components/FractalBackground'
 
 export default function Home() {
     const allDocuments = getDocuments()
@@ -12,7 +11,6 @@ export default function Home() {
             <section className="hero" id="hero">
                 <div className="hero-bg">
                     <img src={heroBg} alt="Putteet Hill community aerial view" />
-                    <FractalBackground />
                     <div className="hero-overlay" />
                 </div>
                 <div className="container hero-content">
