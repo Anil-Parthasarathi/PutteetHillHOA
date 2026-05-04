@@ -25,9 +25,9 @@ export default function Footer() {
                     </div>
                     <div className="footer-col">
                         <h4>Resources</h4>
-                        <Link to="/">Pay Dues</Link>
-                        <Link to="/">Submit Request</Link>
                         <Link to="/calendar">Calendar</Link>
+                        <span style={{ display: 'block', marginBottom: '0.8rem', color: 'var(--color-text-light)', opacity: 0.6, cursor: 'not-allowed', fontSize: '1rem' }}>Pay Dues (Coming Soon)</span>
+                        <span style={{ display: 'block', marginBottom: '0.8rem', color: 'var(--color-text-light)', opacity: 0.6, cursor: 'not-allowed', fontSize: '1rem' }}>Submit Request (Coming Soon)</span>
                     </div>
                     <div className="footer-col">
                         <h4>Contact</h4>

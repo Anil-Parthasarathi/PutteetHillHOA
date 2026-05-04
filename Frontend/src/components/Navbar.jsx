@@ -39,6 +39,17 @@ export default function Navbar() {
                     <Link to="/" className="nav-brand">
                         <img src={logoImg} alt="Putteet Hill HOA" className="nav-logo-img" />
                     </Link>
+                    <div className="nav-stats">
+                        <div className="nav-stat">
+                            <strong>97</strong>
+                            <span>Homes</span>
+                        </div>
+                        <div className="nav-stat-divider" />
+                        <div className="nav-stat">
+                            <strong>{new Date().getFullYear() - 2023}+</strong>
+                            <span>Yrs Est.</span>
+                        </div>
+                    </div>
                     {weather && (
                         <div className="nav-weather">
                             <span className="weather-temp">{weather.temperature}°{weather.temperatureUnit}</span>

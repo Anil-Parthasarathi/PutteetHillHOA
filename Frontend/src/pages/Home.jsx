@@ -1,12 +1,128 @@
+import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import heroBg from '../assets/hero-bg.png'
 import { getDocuments } from '../utils/documents'
+import AnnouncementPanel from '../components/AnnouncementPanel'
 
 export default function Home() {
     const allDocuments = getDocuments()
+    const [selectedAnnouncement, setSelectedAnnouncement] = useState(null)
+
+    const announcements = [
+        {
+            date: 'May 6, 2026',
+            title: 'HOA Board Meeting – May 6th at 6:00 PM',
+            desc: 'Agenda: ACC Appointments, Lawn Company transition, Board Role Assignments, and Annual Budget review. Click to read the full agenda.',
+            tag: 'Event',
+            tagClass: 'tag-event',
+            fullContent: (
+                <div style={{ lineHeight: '1.85', fontSize: '0.97rem', color: 'var(--color-text)' }}>
+                    <h3 style={{ color: 'var(--color-primary-dark)', marginBottom: '0.5rem' }}>First Board Meeting Items:</h3>
+                    <p>Our first meeting will consist of appointing <strong>(Not in attendance)</strong></p>
+                    <ul style={{ margin: '0.5rem 0 0.5rem 1.5rem' }}>
+                        <li>Carol Aubin</li>
+                        <li>Lewis Fadale</li>
+                        <li>Sandy Abeyta</li>
+                    </ul>
+                    <p>to the ACC.</p>
+
+                    <hr style={{ margin: '1.5rem 0', borderColor: 'var(--color-border)' }} />
+
+                    <h3 style={{ color: 'var(--color-primary-dark)', marginBottom: '0.5rem' }}>Lawn Company:</h3>
+                    <p>
+                        If agreed upon we will provide our current Lawn Company a letter of separation of services.
+                        Their contract requires a 30 day notice. Simultaneously we will ensure the new contractor
+                        will be able to pick up right where we leave off with the current contractor.
+                        I will bring all this paperwork to the meeting for review.
+                    </p>
+
+                    <hr style={{ margin: '1.5rem 0', borderColor: 'var(--color-border)' }} />
+
+                    <h3 style={{ color: 'var(--color-primary-dark)', marginBottom: '0.5rem' }}>Defining Our Roles:</h3>
+                    <p>
+                        Based on our candidate applications ChatGPT said the following: But if you would like a
+                        different position than what ChatGPT says we can vote on it in the meeting.
+                    </p>
+                    <div style={{
+                        background: 'rgba(26, 86, 50, 0.04)',
+                        border: '1px solid var(--color-border)',
+                        borderRadius: 'var(--radius-sm)',
+                        padding: '1.5rem',
+                        marginTop: '1rem',
+                    }}>
+                        <p style={{ fontWeight: 700, fontSize: '1.05rem', marginBottom: '1rem' }}>🏆 Final Recommended Roles (Adjusted)</p>
+
+                        <p><strong>🧑‍⚖️ President — Bryan Causey</strong></p>
+                        <ul style={{ margin: '0.25rem 0 0.25rem 1.5rem' }}>
+                            <li>Organized this transition</li>
+                            <li>Led communication</li>
+                            <li>Are clearly comfortable taking charge</li>
+                        </ul>
+                        <p style={{ color: 'var(--color-primary)', fontWeight: 600, marginBottom: '1rem' }}>👉 Stay in control and set the tone for the HOA</p>
+
+                        <p><strong>🤝 Vice President — Ravi Parthasarathi</strong></p>
+                        <ul style={{ margin: '0.25rem 0 0.25rem 1.5rem' }}>
+                            <li>Strong operational + technical thinker</li>
+                            <li>Already engaged in systems (website, future improvements)</li>
+                        </ul>
+                        <p style={{ color: 'var(--color-primary)', fontWeight: 600, marginBottom: '1rem' }}>👉 He becomes your execution partner</p>
+
+                        <p><strong>💰 Treasurer — James Stone</strong></p>
+                        <ul style={{ margin: '0.25rem 0 0.25rem 1.5rem' }}>
+                            <li>CPA</li>
+                            <li>Already handling finances</li>
+                        </ul>
+                        <p style={{ color: 'var(--color-primary)', fontWeight: 600, marginBottom: '1rem' }}>👉 This is the backbone of your board—leave him here</p>
+
+                        <p><strong>📝 Secretary — Eleza Bennett</strong></p>
+                        <ul style={{ margin: '0.25rem 0 0.25rem 1.5rem' }}>
+                            <li>Executive leadership background</li>
+                            <li>Likely strong communicator + organized</li>
+                        </ul>
+                        <p style={{ color: 'var(--color-primary)', fontWeight: 600, marginBottom: '1rem' }}>👉 Keeps records clean and communication professional</p>
+
+                        <p><strong>🧩 Member at Large — Zach Coffey</strong></p>
+                        <ul style={{ margin: '0.25rem 0 0.25rem 1.5rem' }}>
+                            <li>People-oriented</li>
+                            <li>Flexible</li>
+                            <li>Good for homeowner engagement</li>
+                        </ul>
+                    </div>
+
+                    <hr style={{ margin: '1.5rem 0', borderColor: 'var(--color-border)' }} />
+
+                    <h3 style={{ color: 'var(--color-primary-dark)', marginBottom: '0.5rem' }}>Annual Budget:</h3>
+                    <p style={{ color: 'var(--color-text-light)', fontStyle: 'italic' }}>Details to be discussed at the meeting.</p>
+                </div>
+            )
+        },
+        {
+            date: 'Just Now',
+            title: 'New Document Posted',
+            desc: allDocuments.length > 0
+                ? `A new document "${allDocuments[0].title}" has been added to the HOA Documents section under ${allDocuments[0].category}.`
+                : 'New documents have been uploaded to the portal.',
+            tag: 'Update',
+            tagClass: 'tag-update',
+            to: '/documents'
+        },
+        {
+            date: '2 days ago',
+            title: 'Annual HOA Meeting Reminder',
+            desc: 'Our annual HOA meeting is scheduled for next Saturday at 10 AM in the community clubhouse. Please plan to attend.',
+            tag: 'Event',
+            tagClass: 'tag-event',
+        },
+    ]
 
     return (
         <>
+            {/* ── Announcement Panel ── */}
+            <AnnouncementPanel
+                announcement={selectedAnnouncement}
+                onClose={() => setSelectedAnnouncement(null)}
+            />
+
             {/* ── Hero Section ── */}
             <section className="hero" id="hero">
                 <div className="hero-bg">
@@ -14,10 +130,6 @@ export default function Home() {
                     <div className="hero-overlay" />
                 </div>
                 <div className="container hero-content">
-                    <div className="hero-badge">
-                        <span className="hero-badge-dot" />
-                        Welcome to Our Community
-                    </div>
                     <h1>
                         Life at <span>Putteet Hill</span>
                     </h1>
@@ -27,26 +139,15 @@ export default function Home() {
                         Putteet Hill has to offer.
                     </p>
                     <div className="hero-actions">
-                        <a href="#announcements" className="btn btn-primary">
+                        <button
+                            className="btn btn-primary"
+                            onClick={() => document.getElementById('announcements')?.scrollIntoView({ behavior: 'smooth' })}
+                        >
                             Latest News →
-                        </a>
+                        </button>
                         <Link to="/board" className="btn btn-outline">
                             Learn More
                         </Link>
-                    </div>
-                    <div className="hero-stats">
-                        <div className="hero-stat">
-                            <h3>97</h3>
-                            <p>Homes</p>
-                        </div>
-                        <div className="hero-stat">
-                            <h3>{new Date().getFullYear() - 2023}+</h3>
-                            <p>Years Est.</p>
-                        </div>
-                        <div className="hero-stat">
-                            <h3>12</h3>
-                            <p>Annual Events</p>
-                        </div>
                     </div>
                 </div>
             </section>
@@ -102,52 +203,27 @@ export default function Home() {
                 <div className="container">
                     <div className="quick-links-grid">
                         {[
-                            {
-                                icon: '📋',
-                                iconClass: 'green',
-                                title: 'HOA Documents',
-                                desc: 'Bylaws, CC&Rs, meeting minutes, and community guidelines.',
-                                link: 'View Documents',
-                                to: '/documents',
-                            },
-                            {
-                                icon: '💳',
-                                iconClass: 'gold',
-                                title: 'Pay Dues',
-                                desc: 'Conveniently pay your HOA dues and view payment history.',
-                                link: 'Make Payment',
-                                to: '/'
-                            },
-                            {
-                                icon: '🔧',
-                                iconClass: 'blue',
-                                title: 'Submit a Request',
-                                desc: 'Report maintenance issues or submit architectural requests.',
-                                link: 'Submit Request',
-                                to: '/'
-                            },
-                            {
-                                icon: '📅',
-                                iconClass: 'rose',
-                                title: 'Events Calendar',
-                                desc: 'Upcoming community events, meetings, and social gatherings.',
-                                link: 'View Calendar',
-                                to: '/calendar'
-                            },
+                            { icon: '📋', iconClass: 'green', title: 'HOA Documents', desc: 'Bylaws, CC&Rs, meeting minutes, and community guidelines.', link: 'View Documents', to: '/documents' },
+                            { icon: '📅', iconClass: 'rose', title: 'Events Calendar', desc: 'Upcoming community events, meetings, and social gatherings.', link: 'View Calendar', to: '/calendar' },
+                            { icon: '💳', iconClass: 'gray', title: 'Pay Dues (Coming Soon)', desc: 'Conveniently pay your HOA dues and view payment history.', link: 'Unavailable', to: null, disabled: true },
+                            { icon: '🔧', iconClass: 'gray', title: 'Submit a Request (Coming Soon)', desc: 'Report maintenance issues or submit architectural requests.', link: 'Unavailable', to: null, disabled: true },
                         ].map((item, i) => {
                             const Card = (
-                                <div className="quick-link-card" key={i} id={`quick-link-${i}`}>
-                                    <div className={`quick-link-icon ${item.iconClass}`}>
-                                        {item.icon}
-                                    </div>
+                                <div className="quick-link-card" id={`quick-link-${i}`} style={{ height: '100%', ...(item.disabled ? { opacity: 0.55, cursor: 'not-allowed', filter: 'grayscale(1)' } : {}) }}>
+                                    <div className={`quick-link-icon ${item.disabled ? '' : item.iconClass}`}>{item.icon}</div>
                                     <h3>{item.title}</h3>
                                     <p>{item.desc}</p>
-                                    <span className="quick-link-arrow">
-                                        {item.link} →
+                                    <span className="quick-link-arrow" style={{ marginTop: 'auto', ...(item.disabled ? { color: 'var(--color-text-light)' } : {}) }}>
+                                        {item.link} {!item.disabled && '→'}
                                     </span>
                                 </div>
                             )
-                            return item.to ? <Link to={item.to} key={i} style={{ textDecoration: 'none', color: 'inherit' }}>{Card}</Link> : Card
+                            const wrapperStyle = { textDecoration: 'none', color: 'inherit', display: 'block', height: '100%' }
+                            return item.to && !item.disabled ? (
+                                <Link to={item.to} key={i} style={wrapperStyle}>{Card}</Link>
+                            ) : (
+                                <div key={i} style={wrapperStyle}>{Card}</div>
+                            )
                         })}
                     </div>
                 </div>
@@ -161,51 +237,37 @@ export default function Home() {
                             <span className="section-label">Stay Informed</span>
                             <h2 className="section-title">Latest Announcements</h2>
                         </div>
-                        <Link to="/" className="btn btn-outline" style={{
-                            color: 'var(--color-primary)',
-                            borderColor: 'var(--color-border)',
-                        }}>
+                        <Link to="/" className="btn btn-outline" style={{ color: 'var(--color-primary)', borderColor: 'var(--color-border)' }}>
                             View All →
                         </Link>
                     </div>
                     <div className="announcements-grid">
-                        {[
-                            {
-                                date: 'Just Now',
-                                title: 'New Document Posted',
-                                desc: allDocuments.length > 0 ? `A new document "${allDocuments[0].title}" has been added to the HOA Documents section under ${allDocuments[0].category}.` : 'New documents have been uploaded to the portal.',
-                                tag: 'Update',
-                                tagClass: 'tag-update',
-                                to: `/documents`
-                            },
-                            {
-                                date: '2 days ago',
-                                title: 'Annual HOA Meeting Reminder',
-                                desc: 'Our annual HOA meeting is scheduled for next Saturday at 10 AM in the community clubhouse. Please plan to attend.',
-                                tag: 'Event',
-                                tagClass: 'tag-event',
-                                to: '/'
-                            },
-                            {
-                                date: '1 week ago',
-                                title: 'Pool Season Opening Soon!',
-                                desc: 'Get ready for summer! The community pool will officially open on May 1st. Remember to pick up your new pool passes.',
-                                tag: 'Community',
-                                tagClass: 'tag-community',
-                                to: '/'
-                            },
-                        ].map((item, i) => {
-                            const Card = (
-                                <div className="announcement-card" key={i} id={`announcement-${i}`}>
+                        {announcements.map((item, i) => {
+                            const isLink = !!item.to;
+                            const CardContent = (
+                                <div
+                                    className="announcement-card"
+                                    onClick={isLink ? undefined : () => setSelectedAnnouncement(item)}
+                                >
                                     <div className="announcement-date">📌 {item.date}</div>
                                     <h3>{item.title}</h3>
                                     <p>{item.desc}</p>
-                                    <span className={`announcement-tag ${item.tagClass}`}>
-                                        {item.tag}
-                                    </span>
+                                    <div className="announcement-card-footer">
+                                        <span className={`announcement-tag ${item.tagClass}`}>{item.tag}</span>
+                                        <span className="announcement-read-more">{isLink ? 'View Document' : 'Read more'} →</span>
+                                    </div>
                                 </div>
-                            )
-                            return item.to ? <Link to={item.to} key={i} style={{ textDecoration: 'none', color: 'inherit' }}>{Card}</Link> : Card
+                            );
+
+                            return isLink ? (
+                                <Link to={item.to} key={i} style={{ textDecoration: 'none', color: 'inherit', display: 'block' }}>
+                                    {CardContent}
+                                </Link>
+                            ) : (
+                                <div key={i} style={{ cursor: 'pointer', display: 'block' }}>
+                                    {CardContent}
+                                </div>
+                            );
                         })}
                     </div>
                 </div>
