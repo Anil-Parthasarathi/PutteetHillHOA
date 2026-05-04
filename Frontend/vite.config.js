@@ -4,5 +4,6 @@ import react from '@vitejs/plugin-react'
 // https://vite.dev/config/
 export default defineConfig({
   plugins: [react()],
-  base: '/PutteetHillHOA/',
+  // Custom domain (www.putteethillhoa.com) serves from site root, not /repo-name/
+  base: '/',
 })
