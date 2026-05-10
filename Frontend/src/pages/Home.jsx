@@ -10,6 +10,13 @@ export default function Home() {
 
     const announcements = [
         {
+            date: 'May 14, 2026',
+            title: 'HOA Board Meeting – May 14th at 6:00 PM on Teams',
+            desc: 'Join us for our upcoming board meeting virtually on Microsoft Teams. Agenda and meeting link details to follow.',
+            tag: 'Event',
+            tagClass: 'tag-event',
+        },
+        {
             date: 'May 6, 2026',
             title: 'HOA Board Meeting – May 6th at 6:00 PM',
             desc: 'Agenda: ACC Appointments, Lawn Company transition, Board Role Assignments, and Annual Budget review. Click to read the full agenda.',
