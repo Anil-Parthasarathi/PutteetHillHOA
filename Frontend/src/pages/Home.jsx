@@ -8,13 +8,49 @@ export default function Home() {
     const allDocuments = getDocuments()
     const [selectedAnnouncement, setSelectedAnnouncement] = useState(null)
 
+    const DISCORD_MEETINGS_INVITE = 'https://discord.gg/47Yfprur55'
+
     const announcements = [
         {
             date: 'May 14, 2026',
-            title: 'HOA Board Meeting – May 14th at 6:00 PM on Teams',
-            desc: 'Join us for our upcoming board meeting virtually on Microsoft Teams. Agenda and meeting link details to follow.',
+            title: 'Special Board Meeting – May 14 at 6:00 PM',
+            desc: 'Board vote on legal counsel for the Management Certificate; homeowners welcome to observe (~10 min). Join via Discord.',
             tag: 'Event',
             tagClass: 'tag-event',
+            fullContent: (
+                <div style={{ lineHeight: '1.85', fontSize: '0.97rem', color: 'var(--color-text)' }}>
+                    <p>
+                        The HOA Board of Directors will hold a Special Board Meeting on Thursday, May 14 at 6:00 PM on Discord.
+                    </p>
+
+                    <h3 style={{ color: 'var(--color-primary-dark)', margin: '1.25rem 0 0.5rem' }}>Purpose of Meeting</h3>
+                    <p>
+                        The purpose of this meeting is for the Board to vote on whether to approve retaining legal counsel to assist the HOA with filing the Management Certificate and other related HOA matters.
+                    </p>
+                    <p>
+                        This meeting is expected to last approximately 10 minutes. Homeowners are welcome to attend and observe.
+                    </p>
+                    <p>
+                        {`Please note that this meeting is limited to the agenda item listed above, and there will not be a homeowner Q&A portion.`}
+                    </p>
+
+                    <div style={{ marginTop: '1.75rem' }}>
+                        <a
+                            href={DISCORD_MEETINGS_INVITE}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="nav-discord-btn"
+                            style={{ display: 'inline-flex' }}
+                            aria-label="Join us on Discord for the meeting (opens in a new tab)"
+                        >
+                            Join us on Discord
+                        </a>
+                        <p style={{ marginTop: '0.75rem', fontSize: '0.9rem', color: 'var(--color-text-light)' }}>
+                            Use the link above to join the meeting on our community Discord server.
+                        </p>
+                    </div>
+                </div>
+            ),
         },
         {
             date: 'May 6, 2026',

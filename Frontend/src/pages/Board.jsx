@@ -1,19 +1,17 @@
 export default function Board() {
     const boardMembers = [
-        { id: 1, name: "Name 1", title: "President", contact: "president@putteethillhoa.com", image: null },
-        { id: 2, name: "Name 2", title: "Vice President", contact: "vp@putteethillhoa.com", image: null },
-        { id: 3, name: "Name 3", title: "Secretary", contact: "secretary@putteethillhoa.com", image: null },
-        { id: 4, name: "Name 4", title: "Treasurer", contact: "treasurer@putteethillhoa.com", image: null },
-        { id: 5, name: "Name 5", title: "Member at Large", contact: "member5@putteethillhoa.com", image: null }
-    ];
+        { id: 1, name: 'Bryan Causey', title: 'President', contact: 'president@putteethillhoa.com', image: null },
+        { id: 2, name: 'Ravi Parthasarathi', title: 'Vice President', contact: 'vp@putteethillhoa.com', image: null },
+        { id: 3, name: 'James Stone', title: 'Treasurer', contact: 'treasurer@putteethillhoa.com', image: null },
+        { id: 4, name: 'Eleza Bennett', title: 'Secretary', contact: 'secretary@putteethillhoa.com', image: null },
+        { id: 5, name: 'Zach Coffey', title: 'Member at Large', contact: 'member@putteethillhoa.com', image: null },
+    ]
 
     const accMembers = [
-        { id: 1, name: "ACC Name 1", title: "ACC Chair", contact: "acc1@putteethillhoa.com", image: null },
-        { id: 2, name: "ACC Name 2", title: "ACC Member", contact: "acc2@putteethillhoa.com", image: null },
-        { id: 3, name: "ACC Name 3", title: "ACC Member", contact: "acc3@putteethillhoa.com", image: null },
-        { id: 4, name: "ACC Name 4", title: "ACC Member", contact: "acc4@putteethillhoa.com", image: null },
-        { id: 5, name: "ACC Name 5", title: "ACC Member", contact: "acc5@putteethillhoa.com", image: null }
-    ];
+        { id: 1, name: 'Carol Aubin', title: 'ACC Member', contact: 'acc1@putteethillhoa.com', image: null },
+        { id: 2, name: 'Lewis Fadale', title: 'ACC Member', contact: 'acc2@putteethillhoa.com', image: null },
+        { id: 3, name: 'Sandy Abeyta', title: 'ACC Member', contact: 'acc3@putteethillhoa.com', image: null },
+    ]
 
     return (
         <>
