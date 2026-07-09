@@ -17,6 +17,7 @@ export default function Other() {
                             { name: 'Hopper Custom Homes', url: 'https://hoppercustomhomes.com/' },
                             { name: 'John Askew Homes', url: 'https://www.johnaskewhomes.com/' },
                             { name: 'Blake Freeman Construction', url: 'https://blakefreemanconstruction.com/' },
+                            { name: 'HG SIGNATURE HOMES', url: 'https://www.homesbysignaturetx.com/' },
                         ].map((builder, i) => (
                             <a
                                 href={builder.url}
