@@ -39,6 +39,10 @@ export default function Footer() {
                             3100 Rio Grande Cir<br />
                             Cresson, TX 76035
                         </p>
+                        <p style={{ marginTop: '1rem', marginBottom: 0 }}>
+                            <strong style={{ display: 'block', marginBottom: '0.35rem', color: 'var(--color-white)' }}>ACC contact</strong>
+                            <a href="mailto:putteetacc@putteethillhoa.com">putteetacc@putteethillhoa.com</a>
+                        </p>
                     </div>
                 </div>
                 <div className="footer-bottom">

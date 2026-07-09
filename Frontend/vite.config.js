@@ -6,4 +6,12 @@ export default defineConfig({
   plugins: [react()],
   // Custom domain (www.putteethillhoa.com) serves from site root, not /repo-name/
   base: '/',
+  server: {
+    open: true,
+    port: 5173,
+  },
+  preview: {
+    open: true,
+    port: 4173,
+  },
 })

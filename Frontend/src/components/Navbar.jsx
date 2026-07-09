@@ -2,6 +2,8 @@ import { useState, useEffect } from 'react'
 import { Link, useLocation } from 'react-router-dom'
 import logoImg from '../../public/Putteet-Hill-LOGO_white.webp'
 
+const DISCORD_MEETINGS_INVITE = 'https://discord.gg/47Yfprur55'
+
 export default function Navbar() {
     const [scrolled, setScrolled] = useState(false)
     const [weather, setWeather] = useState(null)
@@ -75,6 +77,15 @@ export default function Navbar() {
                     <Link to="/documents">Documents</Link>
                     <Link to="/calendar">Calendar</Link>
                     <Link to="/other">Other</Link>
+                    <a
+                        href={DISCORD_MEETINGS_INVITE}
+                        className="nav-discord-btn"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        aria-label="Join us on Discord (opens in a new tab)"
+                    >
+                        Join us on Discord
+                    </a>
                 </div>
             </div>
         </nav>
