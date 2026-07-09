@@ -10,6 +10,24 @@ export default function Home() {
 
     const announcements = [
         {
+            date: 'July 9, 2026',
+            title: 'Special Board Meeting – July 22nd at 6:00 PM on Discord',
+            desc: 'Special Board Meeting will be held via "Discord" on July 22nd @ 6pm. Details on agenda to follow.',
+            tag: 'Event',
+            tagClass: 'tag-event',
+            fullContent: (
+                <div style={{ lineHeight: '1.85', fontSize: '0.97rem', color: 'var(--color-text)' }}>
+                    <p style={{ marginBottom: '1rem' }}>
+                        Special Board Meeting will be held via <strong>"Discord"</strong>.
+                    </p>
+                    <p style={{ marginBottom: '1rem' }}>
+                        <strong>Date:</strong> July 22nd @ 6pm on Discord.
+                    </p>
+                    <p>Details on agenda to follow.</p>
+                </div>
+            )
+        },
+        {
             date: 'May 14, 2026',
             title: 'HOA Board Meeting – May 14th at 6:00 PM on Teams',
             desc: 'Join us for our upcoming board meeting virtually on Microsoft Teams. Agenda and meeting link details to follow.',
