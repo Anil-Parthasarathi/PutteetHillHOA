@@ -13,8 +13,8 @@ export default function Home() {
     const announcements = [
         {
             date: 'July 9, 2026',
-            title: 'Special Board Meeting – July 22nd at 6:00 PM on Discord',
-            desc: 'Special Board Meeting will be held via "Discord" on July 22nd @ 6pm. Details on agenda to follow.',
+            title: 'Special Board Meeting – July 23rd at 6:00 PM on Discord',
+            desc: 'Special Board Meeting will be held via "Discord" on July 23rd @ 6pm. Details on agenda to follow.',
             tag: 'Event',
             tagClass: 'tag-event',
             fullContent: (
@@ -23,7 +23,7 @@ export default function Home() {
                         Special Board Meeting will be held via <strong>"Discord"</strong>.
                     </p>
                     <p style={{ marginBottom: '1rem' }}>
-                        <strong>Date:</strong> July 22nd @ 6pm on Discord.
+                        <strong>Date:</strong> July 23rd @ 6pm on Discord.
                     </p>
                     <p>Details on agenda to follow.</p>
                 </div>
