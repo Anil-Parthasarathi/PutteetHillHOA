@@ -15,11 +15,6 @@ export default function Navbar() {
     const isHome = location.pathname === '/'
 
     useEffect(() => {
-        // Close menu on route change
-        setMenuOpen(false)
-    }, [location])
-
-    useEffect(() => {
         // Fetch Weather Data from Vercel Serverless Function
         fetch('/api/weather')
             .then((res) => res.json())
@@ -71,7 +66,7 @@ export default function Navbar() {
                     <span className="hamburger-line"></span>
                 </button>
 
-                <div className={`nav-links ${menuOpen ? 'active' : ''}`}>
+                <div className={`nav-links ${menuOpen ? 'active' : ''}`} onClick={() => setMenuOpen(false)}>
                     <Link to="/">Home</Link>
                     <Link to="/board">Board</Link>
                     <Link to="/documents">Documents</Link>
