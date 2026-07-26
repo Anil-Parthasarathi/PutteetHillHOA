@@ -17,7 +17,7 @@ export default function Other() {
                             { name: 'Hopper Custom Homes', url: 'https://hoppercustomhomes.com/' },
                             { name: 'John Askew Homes', url: 'https://www.johnaskewhomes.com/' },
                             { name: 'Blake Freeman Construction', url: 'https://blakefreemanconstruction.com/' },
-                            { name: 'HG SIGNATURE HOMES', url: 'https://www.homesbysignaturetx.com/' },
+
                         ].map((builder, i) => (
                             <a
                                 href={builder.url}
@@ -30,7 +30,9 @@ export default function Other() {
                                 <div className="builder-icon">🏗️</div>
                                 <div className="builder-info">
                                     <h3>{builder.name}</h3>
-                                    <span className="builder-link">Visit Site →</span>
+                                    {builder.name !== 'HG SIGNATURE HOMES' && (
+                                        <span className="builder-link">Visit Site →</span>
+                                    )}
                                 </div>
                             </a>
                         ))}
