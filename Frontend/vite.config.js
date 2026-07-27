@@ -6,6 +6,8 @@ export default defineConfig({
   plugins: [react()],
   // Custom domain (www.putteethillhoa.com) serves from site root, not /repo-name/
   base: '/',
+  // Treat .docx files as static assets (not JS modules)
+  assetsInclude: ['**/*.docx'],
   server: {
     open: true,
     port: 5173,
