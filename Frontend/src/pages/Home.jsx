@@ -10,7 +10,7 @@ export default function Home() {
 
     const DISCORD_MEETINGS_INVITE = 'https://discord.gg/47Yfprur55'
 
-    const announcements = [
+    const staticAnnouncements = [
         {
             date: 'July 9, 2026',
             title: 'Special Board Meeting – July 23rd at 6:00 PM on Discord',
@@ -157,24 +157,34 @@ export default function Home() {
                 </div>
             )
         },
-        {
-            date: 'Just Now',
-            title: 'New Document Posted',
-            desc: allDocuments.length > 0
-                ? `A new document "${allDocuments[0].title}" has been added to the HOA Documents section under ${allDocuments[0].category}.`
-                : 'New documents have been uploaded to the portal.',
+    ]
+
+    const documentAnnouncements = allDocuments
+        .filter(doc => doc.date)
+        .map(doc => ({
+            date: doc.date,
+            title: `New Document Posted: ${doc.title}`,
+            desc: `A new document "${doc.title}" has been added to the HOA Documents section under ${doc.category}.`,
             tag: 'Update',
             tagClass: 'tag-update',
             to: '/documents'
-        },
-        {
-            date: '2 days ago',
-            title: 'Annual HOA Meeting Reminder',
-            desc: 'Our annual HOA meeting is scheduled for next Saturday at 10 AM in the community clubhouse. Please plan to attend.',
-            tag: 'Event',
-            tagClass: 'tag-event',
-        },
-    ]
+        }))
+
+    const parseAnnouncementDate = (dateStr) => {
+        if (!dateStr) return 0;
+        return Date.parse(dateStr) || 0;
+    }
+
+    const latestMeetings = [...staticAnnouncements]
+        .sort((a, b) => parseAnnouncementDate(b.date) - parseAnnouncementDate(a.date))
+        .slice(0, 2)
+
+    const latestDocs = [...documentAnnouncements]
+        .sort((a, b) => parseAnnouncementDate(b.date) - parseAnnouncementDate(a.date))
+        .slice(0, 2)
+
+    const announcements = [...latestMeetings, ...latestDocs]
+        .sort((a, b) => parseAnnouncementDate(b.date) - parseAnnouncementDate(a.date))
 
     return (
         <>
