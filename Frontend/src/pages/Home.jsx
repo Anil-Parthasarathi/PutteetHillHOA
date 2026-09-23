@@ -17,6 +17,7 @@ export default function Home() {
             desc: 'The Board will hold a Special Board Meeting on Oct 7 at United Cooperative Services, Granbury. Agenda: Fee & Fine schedule, Code of Conduct, Financials, 2027 Dues, Spectrum, Lot 58, and more.',
             tag: 'Event',
             tagClass: 'tag-event',
+            to: '/announcements/board-meeting-oct7',
             fullContent: (
                 <div style={{ lineHeight: '1.85', fontSize: '0.97rem', color: 'var(--color-text)' }}>
                     <p style={{ marginBottom: '1rem' }}>
