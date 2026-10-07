@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom'
 
-export default function BoardMeetingOct7() {
+export default function BoardMeetingOct14() {
     return (
         <section style={{ paddingTop: '140px', paddingBottom: '80px', minHeight: '100vh', background: 'var(--color-bg-alt)' }}>
             <div className="container" style={{ maxWidth: '820px' }}>
@@ -9,7 +9,7 @@ export default function BoardMeetingOct7() {
                 </Link>
 
                 <span className="section-label">Event</span>
-                <h2 className="section-title" style={{ marginBottom: '0.5rem' }}>Special Board Meeting – October 7th at 6:00 PM</h2>
+                <h2 className="section-title" style={{ marginBottom: '0.5rem' }}>Special Board Meeting – October 14th at 6:00 PM</h2>
                 <div className="announcement-date" style={{ marginBottom: '2rem' }}>📌 September 23, 2026</div>
 
                 <div style={{
@@ -26,7 +26,7 @@ export default function BoardMeetingOct7() {
                         Putteet Hill Homeowners,
                     </p>
                     <p style={{ marginBottom: '1rem' }}>
-                        The Putteet Hill HOA Board of Directors will hold a <strong>Special Board Meeting on Wednesday, October 7, 2026, at 6:00 PM</strong> at:
+                        The Putteet Hill HOA Board of Directors will hold a <strong>Special Board Meeting on Wednesday, October 14, 2026, at 6:00 PM</strong> at:
                     </p>
                     <div style={{
                         background: 'rgba(26, 86, 50, 0.05)',
@@ -71,7 +71,7 @@ export default function BoardMeetingOct7() {
 
                     <h3 style={{ color: 'var(--color-primary-dark)', margin: '1.75rem 0 0.5rem' }}>Opportunity to Submit Agenda Items</h3>
                     <p style={{ marginBottom: '0.75rem' }}>
-                        Please also consider this email an opportunity to submit matters that you believe should be considered for inclusion on the October 7 agenda.
+                        Please also consider this email an opportunity to submit matters that you believe should be considered for inclusion on the October 14 agenda.
                     </p>
                     <p style={{ marginBottom: '0.75rem' }}>
                         If there is an Association matter you would like the Board to consider, please respond to this email with the requested topic and any relevant information. The Board will review submissions and determine whether an item should be included on the final agenda or addressed at a future meeting.
@@ -186,7 +186,7 @@ export default function BoardMeetingOct7() {
                             <strong>16. Adjournment</strong>
                             <p style={{ margin: '0.25rem 0 0.5rem' }}>The Board appreciates everyone's patience as Putteet Hill continues through a significant period of construction and development. With numerous homes still to be built, there will inevitably be issues that require cooperation among homeowners, builders, contractors, the ACC, and the Board.</p>
                             <p style={{ margin: '0 0 0.5rem' }}>Our objective is to establish clear expectations, improve consistency, communicate openly with homeowners, and address Association business in a professional and constructive manner.</p>
-                            <p style={{ margin: '0' }}>We look forward to seeing everyone on October 7.</p>
+                            <p style={{ margin: '0' }}>We look forward to seeing everyone on October 14.</p>
                         </div>
                     </div>
 

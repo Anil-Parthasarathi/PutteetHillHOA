@@ -7,7 +7,7 @@ import Documents from './pages/Documents'
 import Other from './pages/Other'
 import Calendar from './pages/Calendar'
 import BoardMeetingMay6 from './pages/BoardMeetingMay6'
-import BoardMeetingOct7 from './pages/BoardMeetingOct7'
+import BoardMeetingOct14 from './pages/BoardMeetingOct14'
 import './App.css'
 
 function App() {
@@ -23,7 +23,7 @@ function App() {
             <Route path="/other" element={<Other />} />
             <Route path="/calendar" element={<Calendar />} />
             <Route path="/announcements/board-meeting-may6" element={<BoardMeetingMay6 />} />
-            <Route path="/announcements/board-meeting-oct7" element={<BoardMeetingOct7 />} />
+            <Route path="/announcements/board-meeting-oct14" element={<BoardMeetingOct14 />} />
           </Routes>
         </main>
         <Footer />
