@@ -14,7 +14,7 @@ export default function Home() {
         {
             date: 'September 23, 2026',
             title: 'Special Board Meeting – Wednesday, October 14th at 6:00 PM',
-            desc: 'The Board will hold a Special Board Meeting on Oct 14 at United Cooperative Services, Granbury. Agenda: Fee & Fine schedule, Code of Conduct, Financials, 2027 Dues, Spectrum, Lot 58, and more.',
+            desc: 'The Board will hold a Special Board Meeting on Oct 14 at United Cooperative Services (320 Fall Creek Hwy, Granbury, TX 76049). Agenda: Fee & Fine schedule, Code of Conduct, Financials, 2027 Dues, Spectrum, Lot 58, and more.',
             tag: 'Event',
             tagClass: 'tag-event',
             to: '/announcements/board-meeting-oct14',
@@ -33,8 +33,9 @@ export default function Home() {
                         borderRadius: 'var(--radius-sm)',
                         marginBottom: '1.25rem'
                     }}>
-                        <strong>United Cooperative Services</strong><br />
-                        Granbury, Texas
+                        <strong style={{ fontSize: '1.05rem', color: 'var(--color-primary-dark)' }}>United Cooperative Services</strong><br />
+                        320 Fall Creek Hwy,<br />
+                        Granbury, TX 76049
                     </div>
                     <p style={{ marginBottom: '1.25rem' }}>
                         The purpose of this meeting is to address several important Association matters and provide updates regarding ongoing community issues.

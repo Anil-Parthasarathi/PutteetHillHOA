@@ -2,9 +2,9 @@ export default function Board() {
     const boardMembers = [
         { id: 1, name: 'Bryan Causey', title: 'President', contact: 'president@putteethillhoa.com', image: null },
         { id: 2, name: 'Ravi Parthasarathi', title: 'Vice President', contact: 'vp@putteethillhoa.com', image: null },
-        { id: 3, name: 'James Stone', title: 'Treasurer', contact: 'treasurer@putteethillhoa.com', image: null },
+        { id: 3, name: 'TBD', title: 'Treasurer', contact: 'treasurer@putteethillhoa.com', image: null },
         { id: 4, name: 'Eleza Bennett', title: 'Secretary', contact: 'secretary@putteethillhoa.com', image: null },
-        { id: 5, name: 'Zach Coffey', title: 'Member at Large', contact: 'member@putteethillhoa.com', image: null },
+        { id: 5, name: 'TBD', title: 'Member at Large', contact: 'member@putteethillhoa.com', image: null },
     ]
 
     const accMembers = [

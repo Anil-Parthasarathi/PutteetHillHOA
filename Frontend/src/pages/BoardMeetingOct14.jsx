@@ -36,7 +36,8 @@ export default function BoardMeetingOct14() {
                         marginBottom: '1.25rem'
                     }}>
                         <strong style={{ fontSize: '1.05rem', color: 'var(--color-primary-dark)' }}>United Cooperative Services</strong><br />
-                        Granbury, Texas
+                        320 Fall Creek Hwy,<br />
+                        Granbury, TX 76049
                     </div>
                     <p style={{ marginBottom: '1.25rem' }}>
                         The purpose of this meeting is to address several important Association matters and provide updates regarding ongoing community issues.
