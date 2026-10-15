@@ -31,9 +31,7 @@ export default function Footer() {
                     </div>
                     <div className="footer-col">
                         <h4>Contact</h4>
-                        <a href="mailto:board@puteethillhoa.com">board@puteethillhoa.com</a>
-                        <a href="tel:555-123-4567">(555) 123-4567</a>
-                        <a href="#">Office Hours: M–F, 9–5</a>
+                        <a href="mailto:board@putteethillhoa.com">board@putteethillhoa.com</a>
                         <p className="footer-address">
                             Putteet Hill Homeowners Association, Inc.<br />
                             3100 Rio Grande Cir<br />
