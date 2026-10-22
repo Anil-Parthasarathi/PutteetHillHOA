@@ -12,33 +12,6 @@ export default function Home() {
 
     const staticAnnouncements = [
         {
-            date: 'October 21, 2026',
-            title: 'Updated ACC Application Form Now Available',
-            desc: 'A new version of the Architectural Control Committee (ACC) Application form has been uploaded to the Documents section. Please use this updated form for all new ACC submissions.',
-            tag: 'Update',
-            tagClass: 'tag-update',
-            to: '/documents',
-            fullContent: (
-                <div style={{ lineHeight: '1.85', fontSize: '0.97rem', color: 'var(--color-text)' }}>
-                    <p style={{ marginBottom: '1rem' }}>
-                        Putteet Hill Homeowners,
-                    </p>
-                    <p style={{ marginBottom: '1rem' }}>
-                        An updated version of the <strong>Architectural Control Committee (ACC) Application</strong> form has been posted to the HOA website.
-                    </p>
-                    <p style={{ marginBottom: '1rem' }}>
-                        Please download and use this updated form for all new ACC submissions going forward. The previous July 2026 version has been replaced.
-                    </p>
-                    <p style={{ marginBottom: '1rem' }}>
-                        You can find the form in the <strong>Applications</strong> section of the <a href="/documents" style={{ color: 'var(--color-primary)' }}>HOA Documents</a> page.
-                    </p>
-                    <div style={{ marginTop: '2rem', paddingTop: '1.25rem', borderTop: '1px solid var(--color-border)', fontWeight: 600, color: 'var(--color-primary-dark)' }}>
-                        Putteet Hill HOA Board of Directors
-                    </div>
-                </div>
-            )
-        },
-        {
             date: 'September 23, 2026',
             title: 'Special Board Meeting – Wednesday, October 14th at 6:00 PM',
             desc: 'The Board will hold a Special Board Meeting on Oct 14 at United Cooperative Services (320 Fall Creek Hwy, Granbury, TX 76049). Agenda: Fee & Fine schedule, Code of Conduct, Financials, 2027 Dues, Spectrum, Lot 58, and more.',
