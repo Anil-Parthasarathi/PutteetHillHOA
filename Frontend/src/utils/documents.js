@@ -3,7 +3,7 @@
 const DOCUMENT_LIST = [
     { file: 'Access Control Registration Form.pdf', date: 'June 15, 2026' },
     { file: 'Additional United Cooperative Services converted.pdf', title: 'Additional United Cooperative Services', date: 'June 15, 2026' },
-    { file: 'Architectural-Control-Committee-Application-7.20.2026.pdf', title: 'Architectural Control Committee Application (July 2026)', date: 'July 20, 2026' },
+    { file: 'ACC Application Fillable - 2026-10-14 Updated.pdf', title: 'Architectural Control Committee Application (October 2026)', date: 'October 21, 2026' },
     { file: 'Building-Permit-Application.pdf', date: 'June 15, 2026' },
     { file: 'Bylaws.pdf', date: 'February 10, 2026' },
     { file: 'CCR-RECORDED-02-10-2026.pdf', date: 'February 10, 2026' },
